@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right,#FFD3A5,#FD6585);
+            font-family:cursive;
+            font-weight:bolder;
+            color: #333;
+            margin: 30px;
+        }
+
+        h1{
+            color: brown;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            margin-left: 40%;
+            
+            
+        }
+
+        form{
+            background-color: lightsalmon;
+            margin: 0 auto;
+            
+            max-width: 600px;
+            padding:20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label{
+            color: darkred;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-style: oblique;
+            font-size: large;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        input[type='text']{
+            width: 250px;
+            height: 20px;
+        }
+        input[id='prp']{
+            height: 50px ;
+        }
+        input[id='impl']{
+            height: 50px ;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Award Entry Form</h1>
+    <div>
+    <form action="">
+        <label for="name">Name:
+            <br>
+        <input type="text" id="name1" placeholder="First name">
+        <input type="text" id="name2" placeholder="Last Name"></label>
+        
+        <label for="org">Organization:
+            <br>
+            <input type="text" id="org">
+        </label>
+        
+        <label for="title">Title:
+            <br>
+            <input type="text">
+        </label>
+        
+        <label for="email">Email:
+            <br>
+            <input type="email">
+        </label>
+        
+        <label for="Address">Address:
+            <br>
+            <input type="text" placeholder="Street1"><br><br>
+            <input type="text" placeholder="Street2"><br><br>
+            <input type="text" placeholder="City">
+            <input type="text" placeholder="Region">
+            <br><br>
+            <input type="text" placeholder="Postal code">
+            <input type="text" placeholder="Country">
+        </label>
+        
+        <label for="phone">Phone:
+            <br>
+            <input type="tel">
+        </label>
+        
+        <label for="">Entry Type:
+            <br>
+            <input type="text">
+        </label>
+        
+        <label for="">Entry Name:
+            <br>
+            <input type="text">
+        </label>
+        
+        <label for="prp">Purpose:
+            <br>
+            <input type="text" id="prp">
+        </label>
+        
+        <label for="impl">Implementation:
+            <br>
+            <input type="text" id="impl">
+        </label>
+        
+        <label for="budget">Enter your organization's budget:</label>
+        <input type="text" id="budget" name="budget">
+        <br><br>
+        <input type="submit">
+        <button type="button" onclick="registerOrganization()">Register Organization</button>
+        
+        
+
+        
+</form>
+</div>
+<script>
+    function registerOrganization() {
+        var budgetInput = document.getElementById("budget");
+        var budgetValue = parseFloat(budgetInput.value.replace(/,/g, '')); // Remove commas and parse as float
+
+        if (isNaN(budgetValue)) {
+            alert("Please enter a valid budget amount.");
+            return;
+        }
+
+        if (budgetValue < 2000000) {
+            var confirmation = confirm("Your organization's budget is less than 20,00,000. Do you want to modify it?");
+            if (!confirmation) {
+                
+                clearForm();
+                alert("Registration cancelled.");
+                return;
+            } else {
+                
+                var newBudget = prompt("Enter a new budget:");
+                var newBudgetValue = parseFloat(newBudget.replace(/,/g, ''));
+                if (isNaN(newBudgetValue)) {
+                    alert("Please enter a valid budget amount.");
+                    return;
+                }
+                budgetInput.value = newBudgetValue.toLocaleString();
+                budgetValue = newBudgetValue; // Updating budget value
+            }
+        }
+
+        
+        alert("Registration successful!");
+        clearForm();
+    }
+
+    function clearForm() {
+        var budgetInput = document.getElementById("budget");
+        budgetInput.value = "";
+        console.log("Form cleared.");
+    }
+</script>
+</body>
+</html>
